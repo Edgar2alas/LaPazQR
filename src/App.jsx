@@ -2,6 +2,7 @@ import Header from './components/Header'
 import ComercialSection from './components/ComercialSection'
 import JiwakiSection from './components/JiwakiSection'
 import TuristicoSection from './components/TuristicoSection'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <ComercialSection />
       <JiwakiSection />
       <TuristicoSection />
+      <Footer />
     </div>
   )
 }
