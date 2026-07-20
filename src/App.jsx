@@ -6,15 +6,16 @@ import JiwakiSection from './components/JiwakiSection'
 import TuristicoSection from './components/TuristicoSection'
 import ComercialSection from './components/ComercialSection'
 import Calendario from './components/Calendario'
+import JiwakiAgenda from './components/jiwaki/JiwakiAgenda'
 import Footer from './components/Footer'
 
 function App() {
-  const [vista, setVista] = useState('inicio') // 'inicio' | 'agenda'
+  const [vista, setVista] = useState('inicio') // 'inicio' | 'agenda' | 'jiwaki'
   const refTurismo = useRef(null)
   const refNegocios = useRef(null)
 
   const irA = (destino) => {
-    if (destino === 'agenda' || destino === 'inicio') {
+    if (destino === 'agenda' || destino === 'inicio' || destino === 'jiwaki') {
       setVista(destino)
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
@@ -32,10 +33,10 @@ function App() {
       <Header />
       <Nav active={vista} onNavigate={irA} />
 
-      {vista === 'inicio' ? (
+      {vista === 'inicio' && (
         <>
           <ProximosEventos onVerTodo={() => irA('agenda')} />
-          <JiwakiSection />
+          <JiwakiSection onExplorar={() => irA('jiwaki')} />
           <div ref={refTurismo}>
             <TuristicoSection />
           </div>
@@ -43,9 +44,9 @@ function App() {
             <ComercialSection />
           </div>
         </>
-      ) : (
-        <Calendario />
       )}
+      {vista === 'agenda' && <Calendario />}
+      {vista === 'jiwaki' && <JiwakiAgenda onVolverInicio={() => irA('inicio')} />}
 
       <Footer />
     </div>
