@@ -1,9 +1,33 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
   --color-brand-orange: #f26522;
   --color-brand-green: #1b5e3f;
   --color-brand-red: #8b1e2e;
+  --color-ande-blue: #2f6690;
+  --color-ande-purple: #6d4c8f;
+  --color-ande-gold: #e8ac2e;
+  --color-cream: #fbf6ee;
+  --color-ink: #211d1a;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Scrollbar fina para la agenda del día en el calendario */
+.scroll-fina::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-fina::-webkit-scrollbar-thumb { background: #d8d0c2; border-radius: 999px; }

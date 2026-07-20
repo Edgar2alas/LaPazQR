@@ -1,0 +1,185 @@
+// Datos de ejemplo (mock) inspirados en la Agenda Jiwaki de la Alcaldía de La Paz
+// (https://agendajiwaki.lapaz.bo) y la cartelera de espacios culturales paceños
+// (Teatro Municipal Alberto Saavedra Pérez, Teatro Modesta Sanjinés,
+// Cine Teatro 6 de Agosto, NUNA Espacio Arte, Fiestas Julias 2026).
+//
+// TODO: reemplazar este array por el consumo real de la API municipal:
+// https://sierra247.lapaz.bo/SierraValle_Oficial/public/api/espacios-culturales-portal-eventos
+//
+// Las fechas se calculan en base a "hoy" para que la demo siempre se vea
+// con contenido vigente. Al conectar la API real, usar la fecha tal cual venga.
+
+function fecha(offsetDias) {
+  const d = new Date()
+  d.setDate(d.getDate() + offsetDias)
+  return d.toISOString().slice(0, 10) // YYYY-MM-DD
+}
+
+export const categorias = {
+  teatro: { label: 'Teatro', color: '#f26522' },
+  danza: { label: 'Danza', color: '#8b1e2e' },
+  musica: { label: 'Música', color: '#1b5e3f' },
+  festival: { label: 'Festival', color: '#e8ac2e' },
+  cine: { label: 'Cine', color: '#2f6690' },
+  exposicion: { label: 'Exposición', color: '#6d4c8f' },
+}
+
+export const eventos = [
+  {
+    id: 1,
+    titulo: 'Réquiem: homenaje a Ozzy Osbourne',
+    categoria: 'musica',
+    lugar: 'NUNA Espacio Arte',
+    direccion: 'Av. 20 de Octubre, Sopocachi',
+    fecha: fecha(3),
+    hora: '19:30',
+    precio: 'Desde Bs 70',
+    descripcion:
+      'Concierto sinfónico-rock en homenaje al Príncipe de las Tinieblas, con banda en vivo e invitados.',
+  },
+  {
+    id: 2,
+    titulo: 'Sobre cuerdas: melodías de dos tierras (Perú–Bolivia)',
+    categoria: 'musica',
+    lugar: 'NUNA Espacio Arte',
+    direccion: 'Av. 20 de Octubre, Sopocachi',
+    fecha: fecha(4),
+    hora: '20:00',
+    precio: 'Desde Bs 80',
+    descripcion: 'Concierto de cámara que reúne a solistas de cuerdas peruanos y bolivianos.',
+  },
+  {
+    id: 3,
+    titulo: 'Las mil y una noches',
+    categoria: 'teatro',
+    lugar: 'Teatro Municipal Alberto Saavedra Pérez',
+    direccion: 'Calle Indaburo, Casco Urbano Central',
+    fecha: fecha(6),
+    hora: '18:00',
+    precio: 'Entrada libre',
+    descripcion: 'Puesta en escena que difunde la cultura árabe, parte de la Agenda Jiwaki de la Alcaldía.',
+  },
+  {
+    id: 4,
+    titulo: 'Laikka La Paz Marka',
+    categoria: 'danza',
+    lugar: 'Cine Teatro 6 de Agosto',
+    direccion: 'Av. 6 de Agosto, Sopocachi',
+    fecha: fecha(6),
+    hora: '16:30',
+    precio: 'Entrada libre',
+    descripcion: 'Encuentro de danzas originarias con delegaciones de distintos departamentos de Bolivia.',
+  },
+  {
+    id: 5,
+    titulo: 'Soy de las montañas',
+    categoria: 'danza',
+    lugar: 'Teatro Municipal Modesta Sanjinés',
+    direccion: 'Calle Indaburo, Casco Urbano Central',
+    fecha: fecha(9),
+    hora: '19:00',
+    precio: 'Entrada libre',
+    descripcion: 'Festival de danza folklórica paceña con elencos invitados.',
+  },
+  {
+    id: 6,
+    titulo: 'Noche de jazz en Nayra Qata',
+    categoria: 'musica',
+    lugar: 'Nayra Qata Coffee',
+    direccion: 'Sopocachi, La Paz',
+    fecha: fecha(10),
+    hora: '20:30',
+    precio: 'Consumo mínimo',
+    descripcion:
+      'Trío de jazz en vivo acompañando la carta de café de especialidad. Evento de uno de nuestros negocios asociados.',
+  },
+  {
+    id: 7,
+    titulo: 'Noche de peñas: música andina en vivo',
+    categoria: 'musica',
+    lugar: 'Restaurante Ichuri',
+    direccion: 'Casco Urbano Central, La Paz',
+    fecha: fecha(13),
+    hora: '21:00',
+    precio: 'Consumo mínimo',
+    descripcion:
+      'Charango, zampoña y bombo en vivo mientras disfrutas de cocina paceña. Evento de uno de nuestros negocios asociados.',
+  },
+  {
+    id: 8,
+    titulo: 'El ring de las maravillas',
+    categoria: 'teatro',
+    lugar: 'NUNA Espacio Arte',
+    direccion: 'Av. 20 de Octubre, Sopocachi',
+    fecha: fecha(14),
+    hora: '20:00',
+    precio: 'Desde Bs 60',
+    descripcion: 'Comedia teatral familiar con lucha libre en escena.',
+  },
+  {
+    id: 9,
+    titulo: 'Festival del Queso Humacha',
+    categoria: 'festival',
+    lugar: 'El Prado',
+    direccion: 'Av. 16 de Julio, La Paz',
+    fecha: fecha(17),
+    hora: '10:00',
+    precio: 'Entrada libre',
+    descripcion: 'Feria gastronómica de las Fiestas Julias con productores locales.',
+  },
+  {
+    id: 10,
+    titulo: "Tejidos de la historia: las wak'as",
+    categoria: 'teatro',
+    lugar: 'Teatro Municipal Modesta Sanjinés',
+    direccion: 'Calle Indaburo, Casco Urbano Central',
+    fecha: fecha(18),
+    hora: '19:00',
+    precio: 'Entrada libre',
+    descripcion: "Obra que explora la importancia espiritual de las wak'as en la cosmovisión andina.",
+  },
+  {
+    id: 11,
+    titulo: 'Exposición: Pintemos La Paz',
+    categoria: 'exposicion',
+    lugar: 'Casa de la Cultura Franz Tamayo',
+    direccion: 'Av. Mariscal Santa Cruz, La Paz',
+    fecha: fecha(21),
+    hora: '10:00',
+    precio: 'Entrada libre',
+    descripcion: 'Muestra de las obras ganadoras del concurso infantil de pintura urbana.',
+  },
+  {
+    id: 12,
+    titulo: 'Ciclo de cine boliviano',
+    categoria: 'cine',
+    lugar: 'Cine Teatro 6 de Agosto',
+    direccion: 'Av. 6 de Agosto, Sopocachi',
+    fecha: fecha(24),
+    hora: '19:00',
+    precio: 'Bs 15',
+    descripcion: 'Proyección de cortometrajes de nuevos realizadores paceños.',
+  },
+  {
+    id: 13,
+    titulo: 'Concierto: Octavia, 30 años de "Después de ti"',
+    categoria: 'musica',
+    lugar: 'Teatro Municipal Alberto Saavedra Pérez',
+    direccion: 'Calle Indaburo, Casco Urbano Central',
+    fecha: fecha(27),
+    hora: '19:30',
+    precio: 'Desde Bs 50',
+    descripcion: 'Concierto por el 30 aniversario del icónico sencillo de la banda paceña.',
+  },
+  {
+    id: 14,
+    titulo: 'Encendido de la Tea del Aniversario',
+    categoria: 'festival',
+    lugar: 'Parque Laikakota',
+    direccion: 'Av. del Ejército, La Paz',
+    fecha: fecha(30),
+    hora: '19:00',
+    precio: 'Entrada libre',
+    descripcion: 'Acto central de cierre de las Fiestas Julias en homenaje al aniversario de La Paz.',
+  },
+]
