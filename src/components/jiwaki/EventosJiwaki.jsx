@@ -15,7 +15,7 @@ function formatoLargo(fechaISO) {
   })
 }
 
-export default function EventosJiwaki({ lugar }) {
+export default function EventosJiwaki({ lugar, eventos }) {
   const [busqueda, setBusqueda] = useState('')
   const [rango, setRango] = useState('todas')
   const [eventoActivo, setEventoActivo] = useState(null)
@@ -24,7 +24,7 @@ export default function EventosJiwaki({ lugar }) {
     const hoy = new Date()
     hoy.setHours(0, 0, 0, 0)
 
-    return (lugar.eventos || [])
+    return (eventos || [])
       .filter((e) => e.titulo.toLowerCase().includes(busqueda.trim().toLowerCase()))
       .filter((e) => {
         if (rango === 'todas') return true
@@ -35,7 +35,7 @@ export default function EventosJiwaki({ lugar }) {
         return true
       })
       .sort((a, b) => a.fecha.localeCompare(b.fecha))
-  }, [lugar, busqueda, rango])
+  }, [eventos, busqueda, rango])
 
   return (
     <div className="pb-16">
@@ -85,8 +85,8 @@ export default function EventosJiwaki({ lugar }) {
               onClick={() => setEventoActivo(evento)}
               className="text-left bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col border-t-4 border-brand-orange"
             >
-              {/* Imagen del evento: placeholder hasta tener el arte real */}
-               <div className="aspect-[4/3] bg-slate-100" aria-hidden="true">
+              {/* Imagen del evento; si todavía no la tiene, se ve el fondo gris de siempre */}
+              <div className="aspect-[4/3] bg-slate-100" aria-hidden="true">
                 {evento.imagen && (
                   <img src={evento.imagen} alt="" className="w-full h-full object-cover" />
                 )}
@@ -125,7 +125,10 @@ export default function EventosJiwaki({ lugar }) {
             <span className="text-[11px] font-bold uppercase tracking-wide text-brand-orange px-2 py-0.5 rounded-full bg-orange-50 w-fit inline-block mb-3">
               {lugar.nombre}
             </span>
-            <h3 className="font-display font-extrabold text-xl text-ink mb-3">{eventoActivo.titulo}</h3>
+            <h3 className="font-display font-extrabold text-xl text-ink mb-2">{eventoActivo.titulo}</h3>
+            {eventoActivo.descripcion && (
+              <p className="text-sm text-slate-600 mb-4">{eventoActivo.descripcion}</p>
+            )}
             <dl className="text-sm text-slate-600 flex flex-col gap-1.5">
               <div className="flex gap-2">
                 <dt className="font-semibold text-slate-800 w-16 shrink-0">Fecha</dt>
@@ -139,6 +142,12 @@ export default function EventosJiwaki({ lugar }) {
                   <dd>
                     {lugar.nombre}, {lugar.direccion}
                   </dd>
+                </div>
+              )}
+              {eventoActivo.precio && (
+                <div className="flex gap-2">
+                  <dt className="font-semibold text-slate-800 w-16 shrink-0">Precio</dt>
+                  <dd>{eventoActivo.precio}</dd>
                 </div>
               )}
             </dl>

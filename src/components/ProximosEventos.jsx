@@ -6,7 +6,11 @@ function formatoFecha(fechaISO) {
 }
 
 export default function ProximosEventos({ onVerTodo }) {
-  const proximos = [...eventos].sort((a, b) => a.fecha.localeCompare(b.fecha)).slice(0, 4)
+  const hoyISO = new Date().toISOString().slice(0, 10)
+  const proximos = eventos
+    .filter((e) => e.fecha >= hoyISO)
+    .sort((a, b) => a.fecha.localeCompare(b.fecha))
+    .slice(0, 4)
 
   return (
     <section className="bg-cream py-14 px-4">

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { categoriasJiwaki } from '../../data/jiwakiAgenda'
+import { eventos } from '../../data/eventos'
 import CategoriasJiwaki from './CategoriasJiwaki'
 import LugaresJiwaki from './LugaresJiwaki'
 import EventosJiwaki from './EventosJiwaki'
@@ -11,6 +12,7 @@ export default function JiwakiAgenda({ onVolverInicio }) {
 
   const categoria = categoriasJiwaki.find((c) => c.slug === categoriaSlug) || null
   const lugar = categoria?.lugares?.find((l) => l.slug === lugarSlug) || null
+  const eventosDelLugar = lugar ? eventos.filter((e) => e.lugarSlug === lugar.slug) : []
 
   const irACategorias = () => {
     setCategoriaSlug(null)
@@ -81,7 +83,7 @@ export default function JiwakiAgenda({ onVolverInicio }) {
           <LugaresJiwaki categoria={categoria} onSeleccionar={setLugarSlug} />
         )}
 
-        {lugar && <EventosJiwaki lugar={lugar} />}
+        {lugar && <EventosJiwaki lugar={lugar} eventos={eventosDelLugar} />}
       </div>
     </section>
   )
